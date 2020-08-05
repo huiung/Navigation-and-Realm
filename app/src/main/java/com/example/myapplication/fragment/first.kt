@@ -12,6 +12,7 @@ import androidx.navigation.Navigation
 import com.example.myapplication.R
 import com.example.myapplication.RealmManager
 import com.example.myapplication.exdata
+import io.realm.Realm
 import kotlinx.android.synthetic.main.fragment_first.*
 
 /**
@@ -20,12 +21,14 @@ import kotlinx.android.synthetic.main.fragment_first.*
 class first : Fragment() {
 
     lateinit var navController: NavController
+    lateinit var realmManager: RealmManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        realmManager = RealmManager(Realm.getDefaultInstance())
         return inflater.inflate(R.layout.fragment_first, container, false)
     }
 
@@ -40,23 +43,23 @@ class first : Fragment() {
         data1.name = "huiung"
         data1.phone = "000-0000-0000"
         data1.email = "aaa@aaaaaa.caa"
-//
-//        RealmManager.create(data1)
+
+        realmManager.create(data1)
 
 
         //동일 Name의 data 제거
-       RealmManager.deleteByName("huiung")
+       // realmManager.deleteByName("huiung")
 
 
         // 동일 Name의 data 업데이트
 //        data1.phone = "change"
 //        data1.email = "change"
 
-//        RealmManager.update("huiung", data1)
+//        realmManager.update("huiung", data1)
 
 
         //해당 name의 data find
-        val viewdata = RealmManager.find("huiung")
+        val viewdata = realmManager.find("huiung")
 
         textview2.text = viewdata.toString()
 

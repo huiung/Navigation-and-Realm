@@ -10,6 +10,8 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 
 import com.example.myapplication.R
+import com.example.myapplication.RealmManager
+import io.realm.Realm
 import kotlinx.android.synthetic.main.fragment_first.*
 import kotlinx.android.synthetic.main.fragment_second.*
 import kotlinx.android.synthetic.main.fragment_second.textview
@@ -21,12 +23,14 @@ import kotlinx.android.synthetic.main.fragment_second.textview2
 class second : Fragment() {
 
     lateinit var navController: NavController
+    lateinit var realmManager:RealmManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        realmManager = RealmManager(Realm.getDefaultInstance())
         return inflater.inflate(R.layout.fragment_second, container, false)
     }
 

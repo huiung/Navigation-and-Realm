@@ -17,9 +17,7 @@ open class exdata : RealmObject() {
 
 }
 
-object RealmManager {
-
-    val realm = Realm.getDefaultInstance()
+class RealmManager(val realm: Realm) {
 
     fun find(name: String): exdata? {
         return realm.where(exdata::class.java).equalTo("name", name).findFirst()
